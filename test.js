@@ -1,14 +1,31 @@
-let answer = parseInt(prompt("Enter a number for FizzBuzz"));
-
-for (let i = 1; i <= answer; i++){
-    if(i % 3 == 0 && i % 5 == 0){
-        console.log("FizzBuzz!")
-    } else if(i % 3 == 0){
-        console.log("Fizz")
-    } else if(i % 5 == 0){
-        console.log("Buzz")
-    } else {
-        console.log(i);
-    }
-       
+const whatBeatsWhat = {
+    rock: "scissors",
+    paper: "rock",
+    scissors: "paper"
 }
+
+const computerChoices = Object.keys(whatBeatsWhat)
+
+function computerPicks(){
+    let randomChoice = Math.floor(Math.random() * computerChoices.length)
+    return computerChoices[randomChoice]
+}
+
+console.log(computerPicks)
+
+function playRound(playerSelection, computerSelection){
+    if(playerSelection === computerSelection){
+        return "It's a tie!"
+    }
+
+    if(whatBeatsWhat[playerSelection] === computerSelection){
+        return "You win this game!"
+    }
+
+    return "The computer wins!"
+}
+
+const playerSelection = "scissors"
+const computerSelection = computerPicks()
+const result = playRound(playerSelection, computerSelection)
+console.log(`${result} (${playerSelection} vs ${computerSelection})`)
